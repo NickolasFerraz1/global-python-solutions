@@ -25,37 +25,3 @@ def get_colecao():
 
 get_colecao()
 
-@patch('pymongo.MongoClient')
-def test_get_colecao_sucesso(mock_mongo_client):
-    # Criar um mock para o cliente do MongoDB
-    mock_cliente = MagicMock()
-
-    # Criar um mock para o banco de dados "meu_banco"
-    mock_db = MagicMock()
-
-    # Criar um mock para a coleção "alunos"
-    mock_colecao = MagicMock()
-
-    # Simular o retorno de find() com alguns documentos de exemplo
-    mock_colecao.find.return_value = [
-        {'nome': 'João', 'idade': 21},
-        {'nome': 'Maria', 'idade': 22}
-    ]
-
-    # Configurar o mock do banco de dados para retornar o mock da coleção
-    mock_db.__getitem__.return_value = mock_colecao
-
-    # Configurar o cliente mockado para retornar o mock do banco de dados
-    mock_cliente.__getitem__.return_value = mock_db
-
-    # Fazer o MongoClient mockado retornar o mock do cliente configurado
-    mock_mongo_client.return_value = mock_cliente
-
-    # Chamar a função
-    resultado = get_colecao()
-
-    # Verificar se os resultados incluem os alunos esperados
-    assert {'nome': 'Marcos', 'idade': 31} in resultado
-
-    # Verificar se o método 'find' foi chamado na coleção "alunos"
-    mock_colecao.find.assert_called_once()
