@@ -17,3 +17,5 @@ if resultado:
     print("O número é par")
 else:
     print("O número é ímpar")
+
+par_ou_impar(1)

@@ -1,13 +1,20 @@
-numero = int(input("Digite um número de 1 a 10: "))
+import pytest
 matriz = [[1,2],
           [4,5]]
 
-matriz_transf = []
-for i in matriz:
-    lista = []
-    for num in i:
-        num = num*numero
-        lista.append(num)
-    matriz_transf.append(lista)
+def multiplica_matriz(matriz, numero):
+    matriz_transf = []
+    for i in matriz:
+        lista = []
+        for num in i:
+            num = num * numero
+            lista.append(num)
+        matriz_transf.append(lista)
 
-print(matriz_transf)
+    return matriz_transf
+
+# Teste sem usar input
+def test_multiplica_matriz_sem_input():
+    matriz_esperada = [[2, 4], [8, 10]]
+    resultado = multiplica_matriz(matriz, 2)
+    assert resultado == matriz_esperada
