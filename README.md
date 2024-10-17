@@ -15,9 +15,8 @@ Para rodar os testes, você pode executar o pytest diretamente no arquivo que co
 
 ```bash
 pytest ex1.py
-```bash
 
-## Exercícios que fizemos
+Exercícios que fizemos
 
 Exercício 1: Criação de uma Matriz 3x3
 
