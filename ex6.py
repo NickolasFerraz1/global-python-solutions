@@ -26,3 +26,20 @@ def atualizar_csv(indice_pessoa, idade):
     return "Arquivo atualizado com sucesso!"
 
 atualizar_csv(1, "38")
+
+# Função de teste para a função atualizar_csv
+def test_atualizar_csv():
+    # Simula o conteúdo de um arquivo CSV
+    conteudo_csv = "Nome,Idade\nPessoa1,25\nPessoa2,30\nPessoa3,45\n"
+    
+    # Usa mock_open para simular a leitura e escrita no arquivo
+    mock_file = mock_open(read_data=conteudo_csv)
+    
+    # Patching da função open para usar o mock em vez da real
+    with patch("builtins.open", mock_file):
+        # Executa a função que atualiza o CSV
+        resultado = atualizar_csv(2, "38")  # Atualiza a idade da segunda pessoa
+
+        # Verifica se a função retorna a mensagem correta
+        assert resultado == "Arquivo atualizado com sucesso!"
+    
